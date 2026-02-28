@@ -19,9 +19,10 @@ const stagger = {
 
 export default function Home() {
   const [aboutExpanded, setAboutExpanded] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
 
   return (
-    <div className="relative min-h-screen bg-white text-zinc-900">
+    <div className="relative min-h-screen overflow-x-hidden bg-white text-zinc-900">
       {/* Full-page background */}
       <div className="pointer-events-none fixed inset-0 z-0">
         <div className="absolute inset-0 bg-linear-to-b from-amber-50/60 via-white to-emerald-50/40" />
@@ -36,43 +37,65 @@ export default function Home() {
         transition={{ duration: 0.5 }}
         className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-200/80 bg-white/95 shadow-sm shadow-zinc-200/50 backdrop-blur-md"
       >
-        <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <a href="#" className="group flex items-center gap-2 text-lg font-semibold text-zinc-900 transition-colors hover:text-emerald-700">
+        <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
+          <a href="#" className="group flex items-center gap-2 text-base font-semibold text-zinc-900 transition-colors hover:text-emerald-700 sm:text-lg" onClick={() => setNavOpen(false)}>
             <span className="h-2 w-2 rounded-full bg-emerald-500 transition-colors group-hover:bg-emerald-600" />
             Gareth Wray
           </a>
-          <div className="flex items-center gap-1 sm:gap-2">
-            <a
-              href="#about"
-              className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800"
-            >
+          {/* Desktop nav */}
+          <div className="hidden items-center gap-1 md:flex md:gap-2">
+            <a href="#about" className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800">
               About
             </a>
-            <a
-              href="#services"
-              className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800"
-            >
+            <a href="#services" className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800">
               Services
             </a>
-            <a
-              href="#portfolio"
-              className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800"
-            >
+            <a href="#portfolio" className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800">
               Work
             </a>
-            <a
-              href="#contact"
-              className="ml-2 rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-emerald-700 hover:shadow-md hover:shadow-emerald-200/50 sm:ml-4"
-            >
+            <a href="#contact" className="ml-2 rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-emerald-700 hover:shadow-md hover:shadow-emerald-200/50 sm:ml-4">
               Contact
             </a>
           </div>
+          {/* Mobile menu button */}
+          <button
+            type="button"
+            onClick={() => setNavOpen(!navOpen)}
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-zinc-700 hover:bg-zinc-100 md:hidden"
+            aria-label={navOpen ? "Close menu" : "Open menu"}
+            aria-expanded={navOpen}
+          >
+            {navOpen ? (
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="4" x2="20" y1="12" y2="12" /><line x1="4" x2="20" y1="6" y2="6" /><line x1="4" x2="20" y1="18" y2="18" /></svg>
+            )}
+          </button>
         </nav>
+        {/* Mobile nav dropdown */}
+        <AnimatePresence>
+          {navOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+              className="overflow-hidden border-t border-zinc-200/80 bg-white/98 backdrop-blur-md md:hidden"
+            >
+              <div className="flex flex-col px-4 py-4">
+                <a href="#about" className="rounded-lg px-4 py-3 text-base font-medium text-zinc-700 hover:bg-emerald-50 hover:text-emerald-800" onClick={() => setNavOpen(false)}>About</a>
+                <a href="#services" className="rounded-lg px-4 py-3 text-base font-medium text-zinc-700 hover:bg-emerald-50 hover:text-emerald-800" onClick={() => setNavOpen(false)}>Services</a>
+                <a href="#portfolio" className="rounded-lg px-4 py-3 text-base font-medium text-zinc-700 hover:bg-emerald-50 hover:text-emerald-800" onClick={() => setNavOpen(false)}>Work</a>
+                <a href="#contact" className="mt-2 rounded-full bg-emerald-600 px-4 py-3 text-center text-base font-semibold text-white hover:bg-emerald-700" onClick={() => setNavOpen(false)}>Contact</a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.header>
 
-      <main className="relative z-10 pt-20">
+      <main className="relative z-10 pt-16 sm:pt-20">
         {/* Hero Section */}
-        <section className="relative z-10 mx-auto max-w-4xl px-6 py-12 md:py-20 text-center min-h-[calc(100vh-5rem)] flex flex-col justify-center">
+        <section className="relative z-10 mx-auto max-w-4xl px-4 py-10 sm:px-6 sm:py-12 md:py-20 text-center min-h-[calc(100vh-4.5rem)] sm:min-h-[calc(100vh-5rem)] flex flex-col justify-center">
           <motion.div
             variants={stagger}
             initial="initial"
@@ -81,10 +104,10 @@ export default function Home() {
           >
             <motion.div
               variants={fadeInUp}
-              className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/80 px-4 py-1.5"
+              className="inline-flex max-w-[min(100%,20rem)] sm:max-w-none flex-wrap items-center justify-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/80 px-3 py-1.5 sm:px-4"
             >
-              <span className="h-2 w-2 rounded-full bg-emerald-500" />
-              <span className="text-base font-medium text-emerald-800">
+              <span className="h-2 w-2 shrink-0 rounded-full bg-emerald-500" />
+              <span className="text-sm font-medium text-emerald-800 sm:text-base">
                 Gareth Wray — Digital Marketing & Growth Specialist
               </span>
             </motion.div>
@@ -101,7 +124,7 @@ export default function Home() {
               </span>{" "}
               who convert.
             </motion.h1>
-            <p className="max-w-2xl text-lg leading-relaxed text-zinc-700 sm:text-xl">
+            <p className="max-w-2xl text-base leading-relaxed text-zinc-700 sm:text-lg md:text-xl">
               I build funnels, run paid ads, and create marketing systems
               <br className="hidden sm:block" />
               that generate measurable ROI for small businesses.
@@ -121,26 +144,26 @@ export default function Home() {
               <p className="text-sm font-medium text-zinc-500 uppercase tracking-wider">
                 Worked with
               </p>
-              <div className="flex items-center justify-center gap-12">
+              <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-12">
                 {/* Rich + Niche: white text on black - dark background makes white text pop */}
-                <div className="flex h-14 w-36 items-center justify-center rounded-lg border border-zinc-300 bg-zinc-900 px-4 py-3 shadow-md">
+                <div className="flex h-12 w-28 items-center justify-center rounded-lg border border-zinc-300 bg-zinc-900 px-3 py-2 shadow-md sm:h-14 sm:w-36 sm:px-4 sm:py-3">
                   <Image
                     src="/rich-and-niche-logo.png"
                     alt="Rich + Niche"
                     width={128}
                     height={48}
-                    className="h-9 w-auto max-w-full object-contain"
+                    className="h-7 w-auto max-w-full object-contain sm:h-9"
                     unoptimized
                   />
                 </div>
                 {/* Aspire 1: black/dark text - light background maximizes contrast */}
-                <div className="flex h-14 w-36 items-center justify-center rounded-lg border border-zinc-200 bg-white px-4 py-3 shadow-md">
+                <div className="flex h-12 w-28 items-center justify-center rounded-lg border border-zinc-200 bg-white px-3 py-2 shadow-md sm:h-14 sm:w-36 sm:px-4 sm:py-3">
                   <Image
                     src="/aspire-1-coaching-logo.png"
                     alt="Aspire 1 Coaching"
                     width={128}
                     height={48}
-                    className="h-9 w-auto max-w-full object-contain"
+                    className="h-7 w-auto max-w-full object-contain sm:h-9"
                     unoptimized
                   />
                 </div>
@@ -151,7 +174,7 @@ export default function Home() {
 
         {/* About Section */}
         <section id="about" className="bg-zinc-50/30">
-          <div className="mx-auto max-w-6xl px-6 py-24">
+          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -164,7 +187,7 @@ export default function Home() {
                 <h2 className="text-sm font-medium text-zinc-700 uppercase tracking-wider mb-4">
                   Why work with me
                 </h2>
-                <h3 className="text-2xl font-semibold text-zinc-900 mb-6">
+                <h3 className="text-xl font-semibold text-zinc-900 mb-6 sm:text-2xl">
                   There&apos;s no shortage of marketers out there. So here&apos;s
                   the honest answer to why it should be me.
                 </h3>
@@ -254,16 +277,16 @@ export default function Home() {
                       priority
                     />
                   </div>
-                  {/* Floating text boxes */}
-                  <div className="absolute left-0 top-1/2 z-20 w-48 -translate-x-[55%] -translate-y-1/2 rounded-lg border border-emerald-700/30 bg-emerald-800/95 px-4 py-3 shadow-lg md:w-52">
+                  {/* Floating text boxes - hidden on small screens to avoid overflow */}
+                  <div className="absolute left-0 top-1/2 z-20 hidden w-48 -translate-x-[55%] -translate-y-1/2 rounded-lg border border-emerald-700/30 bg-emerald-800/95 px-4 py-3 shadow-lg md:block md:w-52">
                     <p className="font-bold text-amber-400">Growth Focused</p>
                     <p className="mt-0.5 text-xs text-amber-200/90">Every asset designed to bring in leads</p>
                   </div>
-                  <div className="absolute right-0 top-1/2 z-20 w-48 translate-x-1/2 -translate-y-1/2 rounded-lg border border-emerald-700/30 bg-emerald-800/95 px-4 py-3 shadow-lg md:w-52">
+                  <div className="absolute right-0 top-1/2 z-20 hidden w-48 translate-x-1/2 -translate-y-1/2 rounded-lg border border-emerald-700/30 bg-emerald-800/95 px-4 py-3 shadow-lg md:block md:w-52">
                     <p className="font-bold text-amber-400">Sales DNA</p>
                     <p className="mt-0.5 text-xs text-amber-200/90">Marketing built around what actually converts</p>
                   </div>
-                  <div className="absolute bottom-0 left-1/2 z-20 w-48 -translate-x-1/2 translate-y-1/2 rounded-lg border border-emerald-700/30 bg-emerald-800/95 px-4 py-3 shadow-lg md:w-56">
+                  <div className="absolute bottom-0 left-1/2 z-20 hidden w-48 -translate-x-1/2 translate-y-1/2 rounded-lg border border-emerald-700/30 bg-emerald-800/95 px-4 py-3 shadow-lg md:block md:w-56">
                     <p className="font-bold text-amber-400">Purpose Built</p>
                     <p className="mt-0.5 text-xs text-amber-200/90">Every asset created with a goal in mind</p>
                   </div>
@@ -274,13 +297,13 @@ export default function Home() {
         </section>
 
         {/* Text Testimonial Section */}
-        <section id="text-testimonial" className="bg-emerald-100/90 py-24">
-          <div className="mx-auto max-w-3xl px-6">
+        <section id="text-testimonial" className="bg-emerald-100/90 py-16 md:py-24">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-lg sm:p-10"
+              className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-lg sm:p-8 md:p-10"
             >
               <div className="mb-6 flex justify-center gap-1" aria-hidden>
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -321,7 +344,7 @@ export default function Home() {
 
         {/* Services Section */}
         <section id="services">
-          <div className="mx-auto max-w-5xl px-6 py-24">
+          <div className="mx-auto max-w-5xl px-4 py-16 sm:px-6 md:py-24">
             <motion.h2
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -422,7 +445,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: 0.05 * Math.min(i, 4) }}
-                  className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm"
+                  className="rounded-xl border border-zinc-200 bg-white p-4 shadow-sm sm:p-6"
                 >
                   <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600">
                     {service.icon}
@@ -437,13 +460,13 @@ export default function Home() {
         </section>
 
         {/* Text Testimonial - Harry Kirk */}
-        <section id="testimonial-harry" className="bg-emerald-100/90 py-24">
-          <div className="mx-auto max-w-3xl px-6">
+        <section id="testimonial-harry" className="bg-emerald-100/90 py-16 md:py-24">
+          <div className="mx-auto max-w-3xl px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-lg sm:p-10"
+              className="rounded-2xl border border-zinc-200 bg-white p-6 shadow-lg sm:p-8 md:p-10"
             >
               <div className="mb-6 flex justify-center gap-1" aria-hidden>
                 {[1, 2, 3, 4, 5].map((i) => (
@@ -475,7 +498,7 @@ export default function Home() {
 
         {/* Portfolio Section */}
         <section id="portfolio" className="bg-zinc-50/30">
-          <div className="mx-auto max-w-6xl px-6 py-24">
+          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
             <motion.h2
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -489,11 +512,11 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.05 }}
-              className="text-2xl font-semibold text-zinc-900 mb-12"
+              className="text-xl font-semibold text-zinc-900 mb-8 sm:text-2xl sm:mb-12"
             >
               Recent projects
             </motion.h3>
-            <div className="grid gap-8 md:grid-cols-2">
+            <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
               {[
                 {
                   client: "Rich and Niche Academy",
@@ -541,7 +564,7 @@ export default function Home() {
                       </div>
                     )}
                   </div>
-                  <div className="p-6">
+                  <div className="p-4 sm:p-6">
                     <div className="mb-3 flex flex-wrap gap-2">
                       {project.tags.map((tag) => (
                         <span
@@ -582,7 +605,7 @@ export default function Home() {
 
         {/* Testimonials Section */}
         <section id="testimonials" className="bg-emerald-100/90">
-          <div className="mx-auto max-w-6xl px-6 py-24">
+          <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
             <div className="grid gap-12 items-center lg:grid-cols-2 lg:gap-16">
               {/* Left column - Text content */}
               <div>
@@ -590,7 +613,7 @@ export default function Home() {
                   Customer stories
                 </h2>
                 <span className="text-5xl font-serif text-amber-600/80 leading-none" aria-hidden>&ldquo;</span>
-                <blockquote className="mt-2 text-2xl font-semibold text-zinc-900 leading-snug sm:text-3xl">
+                <blockquote className="mt-2 text-xl font-semibold text-zinc-900 leading-snug sm:text-2xl md:text-3xl">
                   Definitely give Gareth a try if you&apos;re looking for a full stack marketer.
                 </blockquote>
                 <div className="mt-4 flex gap-1" aria-hidden>
@@ -613,16 +636,16 @@ export default function Home() {
                     <p className="text-sm text-zinc-500">Rich and Niche Academy</p>
                   </div>
                 </div>
-                <div className="mt-8 grid grid-cols-3 gap-4 rounded-xl border border-emerald-700/30 bg-emerald-800/90 p-6 shadow-sm">
-                  <div className="text-center">
+                <div className="mt-8 grid grid-cols-1 gap-4 rounded-xl border border-emerald-700/30 bg-emerald-800/90 p-4 shadow-sm sm:grid-cols-3 sm:gap-4 sm:p-6">
+                  <div className="py-4 text-center sm:py-0">
                     <p className="text-xl font-bold text-amber-400">77%</p>
                     <p className="text-sm text-amber-200/90">CTR improvement</p>
                   </div>
-                  <div className="border-x border-amber-400/60 text-center">
+                  <div className="border-x-0 border-t border-b border-amber-400/60 py-4 text-center sm:border-x sm:border-t-0 sm:border-b-0 sm:py-0">
                     <p className="text-xl font-bold text-amber-400">2.4x</p>
                     <p className="text-sm text-amber-200/90">ROAS growth</p>
                   </div>
-                  <div className="text-center">
+                  <div className="py-4 text-center sm:py-0">
                     <p className="text-xl font-bold text-amber-400">223%</p>
                     <p className="text-sm text-amber-200/90">More clicks</p>
                   </div>
@@ -651,21 +674,21 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="bg-emerald-100/90 py-24">
-          <div className="mx-auto max-w-4xl px-6">
+        <section id="contact" className="bg-emerald-100/90 py-16 md:py-24">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="overflow-hidden rounded-3xl border border-emerald-200/80 bg-white p-10 text-center shadow-xl sm:p-14"
+              className="overflow-hidden rounded-2xl border border-emerald-200/80 bg-white p-6 text-center shadow-xl sm:rounded-3xl sm:p-10 md:p-14"
             >
               <h2 className="text-sm font-medium text-emerald-700 uppercase tracking-wider mb-3">
                 Ready to grow?
               </h2>
-              <h3 className="text-2xl font-bold text-zinc-900 sm:text-3xl mb-4">
+              <h3 className="text-xl font-bold text-zinc-900 sm:text-2xl md:text-3xl mb-4">
                 Book a free 30-minute strategy call
               </h3>
-              <p className="mx-auto max-w-2xl text-zinc-600 mb-8 text-lg leading-relaxed">
+              <p className="mx-auto max-w-2xl text-zinc-600 mb-8 text-base leading-relaxed sm:text-lg">
                 No pitch, no pressure. We&apos;ll look at your current setup,
                 identify the biggest opportunity, and map out a clear path
                 forward. If it&apos;s a fit, we&apos;ll talk next steps.
@@ -694,7 +717,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer>
-          <div className="mx-auto max-w-5xl px-6 py-8">
+          <div className="mx-auto max-w-5xl px-4 py-8 sm:px-6">
             <p className="text-sm text-zinc-700">
               © {new Date().getFullYear()} Gareth Wray. Ipswich, UK.
             </p>

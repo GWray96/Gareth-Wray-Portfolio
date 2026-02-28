@@ -18,6 +18,12 @@ export const metadata: Metadata = {
     "Digital Marketing & Growth Specialist based in Ipswich, UK. Helping brands grow through data-driven strategies and creative campaigns.",
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
