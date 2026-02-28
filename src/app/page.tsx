@@ -34,40 +34,35 @@ export default function Home() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur-md"
+        className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-200/80 bg-white/95 shadow-sm shadow-zinc-200/50 backdrop-blur-md"
       >
         <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <a href="#" className="text-lg font-semibold text-zinc-900 hover:text-zinc-700 transition-colors">
+          <a href="#" className="group flex items-center gap-2 text-lg font-semibold text-zinc-900 transition-colors hover:text-emerald-700">
+            <span className="h-2 w-2 rounded-full bg-emerald-500 transition-colors group-hover:bg-emerald-600" />
             Gareth Wray
           </a>
-          <div className="flex gap-8">
+          <div className="flex items-center gap-1 sm:gap-2">
             <a
               href="#about"
-              className="text-sm text-zinc-800 hover:text-zinc-900 transition-colors"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800"
             >
               About
             </a>
             <a
               href="#services"
-              className="text-sm text-zinc-800 hover:text-zinc-900 transition-colors"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800"
             >
               Services
             </a>
             <a
               href="#portfolio"
-              className="text-sm text-zinc-800 hover:text-zinc-900 transition-colors"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800"
             >
               Work
             </a>
             <a
-              href="#testimonials"
-              className="text-sm text-zinc-800 hover:text-zinc-900 transition-colors"
-            >
-              Testimonials
-            </a>
-            <a
               href="#contact"
-              className="text-sm text-zinc-800 hover:text-zinc-900 transition-colors"
+              className="ml-2 rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-emerald-700 hover:shadow-md hover:shadow-emerald-200/50 sm:ml-4"
             >
               Contact
             </a>
