@@ -1,6 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Image from "next/image";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 24 },
@@ -16,33 +18,56 @@ const stagger = {
 };
 
 export default function Home() {
+  const [aboutExpanded, setAboutExpanded] = useState(false);
+
   return (
-    <div className="min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-zinc-50">
+    <div className="relative min-h-screen bg-white text-zinc-900">
+      {/* Full-page background */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-linear-to-b from-amber-50/60 via-white to-emerald-50/40" />
+        <div className="absolute top-1/4 -left-32 w-64 h-64 rounded-full bg-emerald-100/40 blur-3xl" />
+        <div className="absolute bottom-1/4 -right-32 w-72 h-72 rounded-full bg-amber-100/50 blur-3xl" />
+        <div className="absolute top-2/3 left-1/2 -translate-x-1/2 w-96 h-96 rounded-full bg-emerald-50/30 blur-3xl" />
+      </div>
       {/* Navigation */}
       <motion.header
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-200/80 dark:border-zinc-800/80 bg-white/80 dark:bg-zinc-950/80 backdrop-blur-md"
+        className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-200 bg-white/95 backdrop-blur-md"
       >
         <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-          <span className="text-lg font-semibold">Gareth Wray</span>
+          <a href="#" className="text-lg font-semibold text-zinc-900 hover:text-zinc-700 transition-colors">
+            Gareth Wray
+          </a>
           <div className="flex gap-8">
             <a
               href="#about"
-              className="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
+              className="text-sm text-zinc-800 hover:text-zinc-900 transition-colors"
             >
               About
             </a>
             <a
               href="#services"
-              className="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
+              className="text-sm text-zinc-800 hover:text-zinc-900 transition-colors"
             >
               Services
             </a>
             <a
+              href="#portfolio"
+              className="text-sm text-zinc-800 hover:text-zinc-900 transition-colors"
+            >
+              Work
+            </a>
+            <a
+              href="#testimonials"
+              className="text-sm text-zinc-800 hover:text-zinc-900 transition-colors"
+            >
+              Testimonials
+            </a>
+            <a
               href="#contact"
-              className="text-sm text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors"
+              className="text-sm text-zinc-800 hover:text-zinc-900 transition-colors"
             >
               Contact
             </a>
@@ -50,127 +75,350 @@ export default function Home() {
         </nav>
       </motion.header>
 
-      <main className="pt-20">
+      <main className="relative z-10 pt-20">
         {/* Hero Section */}
-        <section className="mx-auto max-w-5xl px-6 py-24 md:py-32">
+        <section className="relative z-10 mx-auto max-w-4xl px-6 py-12 md:py-20 text-center min-h-[calc(100vh-5rem)] flex flex-col justify-center">
           <motion.div
             variants={stagger}
             initial="initial"
             animate="animate"
-            className="space-y-6"
+            className="relative flex flex-col items-center space-y-5"
           >
-            <motion.p
+            <motion.div
               variants={fadeInUp}
-              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider"
+              className="inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50/80 px-4 py-1.5"
             >
-              Digital Marketing & Growth Specialist
-            </motion.p>
+              <span className="h-2 w-2 rounded-full bg-emerald-500" />
+              <span className="text-base font-medium text-emerald-800">
+                Gareth Wray — Digital Marketing & Growth Specialist
+              </span>
+            </motion.div>
             <motion.h1
               variants={fadeInUp}
-              className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
+              className="text-3xl font-bold leading-tight tracking-tight text-zinc-900 sm:text-4xl md:text-5xl lg:text-6xl"
             >
-              I help brands grow through{" "}
-              <span className="text-zinc-500 dark:text-zinc-400">
-                data-driven
+              Stop wasting ad spend.
+              <br />
+              Start filling your funnel with{" "}
+              <span className="relative inline-block">
+                <span className="relative z-10 text-emerald-700">qualified leads</span>
+                <span className="absolute bottom-1 left-0 right-0 z-0 h-2 bg-emerald-200/80" />
               </span>{" "}
-              marketing
+              who convert.
             </motion.h1>
-            <motion.p
-              variants={fadeInUp}
-              className="max-w-2xl text-lg text-zinc-600 dark:text-zinc-400"
-            >
-              Based in Ipswich, UK. I combine creativity with analytics to
-              deliver campaigns that drive real results.
-            </motion.p>
-            <motion.div variants={fadeInUp} className="flex gap-4 pt-4">
+            <p className="max-w-2xl text-lg leading-relaxed text-zinc-700 sm:text-xl">
+              I build funnels, run paid ads, and create marketing systems
+              <br className="hidden sm:block" />
+              that generate measurable ROI for small businesses.
+              <br className="hidden sm:block" />
+              Based in Ipswich, UK.
+            </p>
+            <div className="pt-2">
               <a
-                href="#contact"
-                className="inline-flex items-center rounded-full bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
+                href="#portfolio"
+                className="group inline-flex items-center gap-2 rounded-full bg-emerald-600 px-6 py-3 text-base font-semibold text-white shadow-lg shadow-emerald-200/50 transition-all hover:bg-emerald-700 hover:shadow-emerald-300/50 hover:-translate-y-0.5"
               >
-                Get in touch
+                See My Work
+                <span className="transition-transform group-hover:translate-y-0.5">↓</span>
               </a>
-              <a
-                href="#services"
-                className="inline-flex items-center rounded-full border border-zinc-300 px-6 py-3 text-sm font-medium transition-colors hover:border-zinc-400 dark:border-zinc-700 dark:hover:border-zinc-600"
-              >
-                View services
-              </a>
-            </motion.div>
+            </div>
+            <div className="relative z-20 flex flex-col items-center gap-4 pt-8">
+              <p className="text-sm font-medium text-zinc-500 uppercase tracking-wider">
+                Worked with
+              </p>
+              <div className="flex items-center justify-center gap-12">
+                {/* Rich + Niche: white text on black - dark background makes white text pop */}
+                <div className="flex h-14 w-36 items-center justify-center rounded-lg border border-zinc-300 bg-zinc-900 px-4 py-3 shadow-md">
+                  <Image
+                    src="/rich-and-niche-logo.png"
+                    alt="Rich + Niche"
+                    width={128}
+                    height={48}
+                    className="h-9 w-auto max-w-full object-contain"
+                    unoptimized
+                  />
+                </div>
+                {/* Aspire 1: black/dark text - light background maximizes contrast */}
+                <div className="flex h-14 w-36 items-center justify-center rounded-lg border border-zinc-200 bg-white px-4 py-3 shadow-md">
+                  <Image
+                    src="/aspire-1-coaching-logo.png"
+                    alt="Aspire 1 Coaching"
+                    width={128}
+                    height={48}
+                    className="h-9 w-auto max-w-full object-contain"
+                    unoptimized
+                  />
+                </div>
+              </div>
+            </div>
           </motion.div>
         </section>
 
         {/* About Section */}
-        <section id="about" className="border-t border-zinc-200 dark:border-zinc-800">
-          <div className="mx-auto max-w-5xl px-6 py-24">
+        <section id="about" className="bg-zinc-50/30">
+          <div className="mx-auto max-w-6xl px-6 py-24">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="grid gap-12 md:grid-cols-2 md:gap-16"
+              className="grid gap-12 items-center md:grid-cols-2 md:gap-16"
             >
+              {/* Left column - Content */}
               <div>
-                <h2 className="text-sm font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-4">
-                  About me
+                <h2 className="text-sm font-medium text-zinc-700 uppercase tracking-wider mb-4">
+                  Why work with me
                 </h2>
-                <h3 className="text-2xl font-semibold mb-4">
-                  Passionate about growth and measurable results
+                <h3 className="text-2xl font-semibold text-zinc-900 mb-6">
+                  There&apos;s no shortage of marketers out there. So here&apos;s
+                  the honest answer to why it should be me.
                 </h3>
-                <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                  I&apos;m Gareth Wray, a Digital Marketing & Growth Specialist
-                  based in Ipswich, UK. With expertise spanning paid media, SEO,
-                  content strategy, and conversion optimisation, I help
-                  businesses of all sizes achieve their growth objectives.
+                <p className="text-zinc-800 leading-relaxed mb-6">
+                  Most agencies and freelancers will build you something that
+                  looks great in a deck. I build things that convert, because
+                  before I ever touched a marketing tool, I spent five years in
+                  high-performance sales understanding exactly what makes people
+                  say yes. That insight doesn&apos;t come from a course. It
+                  comes from thousands of real conversations, objections
+                  handled, and deals closed.
                 </p>
+                <p className="text-zinc-800 leading-relaxed mb-6">
+                  I&apos;ve since trained in full-funnel marketing through the
+                  Rich and Niche Academy, and I apply that sales intelligence to
+                  every campaign I run. The results speak for themselves: a 77%
+                  CTR improvement and ROAS growth from 2.76x to 6.51x on a live
+                  Meta campaign aren&apos;t numbers from a case study template.
+                  They&apos;re from real work, on a real budget.
+                </p>
+                <AnimatePresence initial={false}>
+                  {aboutExpanded && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="text-zinc-800 leading-relaxed mb-6">
+                        I also handle the full picture. Strategy, execution,
+                        copywriting, ads, funnels, CRM automation across Webflow,
+                        Go High Level, Meta Ads, and Canva. You won&apos;t be
+                        passed between a strategist, a designer, and a
+                        copywriter. You get one person who owns the outcome.
+                      </p>
+                      <p className="text-zinc-800 leading-relaxed mb-6">
+                        And unlike most agencies, there are no lock-in
+                        contracts. You stay because it&apos;s working, not
+                        because you&apos;re stuck.
+                      </p>
+                      <p className="text-zinc-800 leading-relaxed mb-6">
+                        If that sounds like what you&apos;ve been looking for,
+                        let&apos;s have a conversation.
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+                <div className="flex flex-wrap items-center gap-4">
+                  <button
+                    type="button"
+                    onClick={() => setAboutExpanded(!aboutExpanded)}
+                    className="text-sm font-semibold text-emerald-600 hover:text-emerald-700 transition-colors"
+                  >
+                    {aboutExpanded ? "Show less" : "Read more"}
+                  </button>
+                  {!aboutExpanded && (
+                    <a
+                      href="#contact"
+                      className="inline-flex items-center rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-emerald-200/50 transition-all hover:bg-emerald-700 hover:shadow-emerald-300/50"
+                    >
+                      Let&apos;s have a conversation
+                    </a>
+                  )}
+                </div>
+                {aboutExpanded && (
+                  <a
+                    href="#contact"
+                    className="mt-6 inline-flex items-center rounded-full bg-emerald-600 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-emerald-200/50 transition-all hover:bg-emerald-700 hover:shadow-emerald-300/50"
+                  >
+                    Let&apos;s have a conversation
+                  </a>
+                )}
               </div>
-              <div>
-                <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                  Whether you need to scale your customer acquisition, improve
-                  your digital presence, or build a data-driven marketing
-                  strategy, I bring a blend of creativity and analytical rigour
-                  to every project.
-                </p>
+
+              {/* Right column - Profile picture with floating text boxes */}
+              <div className="relative flex justify-center md:justify-end">
+                <div className="relative aspect-square w-full max-w-sm">
+                  {/* Profile image */}
+                  <div className="relative z-10 overflow-hidden rounded-2xl shadow-xl">
+                    <Image
+                      src="/profile.png"
+                      alt="Gareth Wray"
+                      width={400}
+                      height={400}
+                      className="aspect-square w-full object-cover"
+                      priority
+                    />
+                  </div>
+                  {/* Floating text boxes */}
+                  <div className="absolute left-0 top-1/2 z-20 w-48 -translate-x-[55%] -translate-y-1/2 rounded-lg border border-emerald-700/30 bg-emerald-800/95 px-4 py-3 shadow-lg md:w-52">
+                    <p className="font-bold text-amber-400">Growth Focused</p>
+                    <p className="mt-0.5 text-xs text-amber-200/90">Every asset designed to bring in leads</p>
+                  </div>
+                  <div className="absolute right-0 top-1/2 z-20 w-48 translate-x-1/2 -translate-y-1/2 rounded-lg border border-emerald-700/30 bg-emerald-800/95 px-4 py-3 shadow-lg md:w-52">
+                    <p className="font-bold text-amber-400">Sales DNA</p>
+                    <p className="mt-0.5 text-xs text-amber-200/90">Marketing built around what actually converts</p>
+                  </div>
+                  <div className="absolute bottom-0 left-1/2 z-20 w-48 -translate-x-1/2 translate-y-1/2 rounded-lg border border-emerald-700/30 bg-emerald-800/95 px-4 py-3 shadow-lg md:w-56">
+                    <p className="font-bold text-amber-400">Purpose Built</p>
+                    <p className="mt-0.5 text-xs text-amber-200/90">Every asset created with a goal in mind</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Text Testimonial Section */}
+        <section id="text-testimonial" className="bg-emerald-100/90 py-24">
+          <div className="mx-auto max-w-3xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-lg sm:p-10"
+            >
+              <div className="mb-6 flex justify-center gap-1" aria-hidden>
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <span key={i} className="text-amber-400">★</span>
+                ))}
+              </div>
+              <blockquote className="mb-8 text-center text-lg font-bold leading-relaxed text-zinc-900 sm:text-xl">
+                &ldquo;Outstanding service from Gareth! He took care of everything, from setting up automations to creating lead magnets. Excited for what we can achieve together 💪 Highly recommend!&rdquo;
+              </blockquote>
+              <div className="flex flex-wrap items-center justify-center gap-6 sm:flex-nowrap sm:gap-8">
+                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full">
+                  <Image
+                    src="/mazin-profile.png"
+                    alt="Mazin Alneami"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+                <div className="text-center sm:text-left">
+                  <p className="font-bold text-zinc-900">Mazin Alneami</p>
+                  <p className="text-sm text-zinc-500">Head Coach / Founder of Aspire 1 Coaching</p>
+                </div>
+                <div className="flex h-10 w-28 items-center justify-center">
+                  <Image
+                    src="/aspire-1-coaching-logo.png"
+                    alt="Aspire 1 Coaching"
+                    width={112}
+                    height={40}
+                    className="h-8 w-auto object-contain"
+                    unoptimized
+                  />
+                </div>
               </div>
             </motion.div>
           </div>
         </section>
 
         {/* Services Section */}
-        <section id="services" className="border-t border-zinc-200 dark:border-zinc-800">
+        <section id="services">
           <div className="mx-auto max-w-5xl px-6 py-24">
             <motion.h2
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-sm font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-4"
+              className="text-sm font-medium text-zinc-700 uppercase tracking-wider mb-4"
             >
-              Services
+              What I do
             </motion.h2>
-            <motion.h3
+            <motion.p
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.05 }}
-              className="text-2xl font-semibold mb-12"
+              className="text-lg text-zinc-800 mb-12 max-w-3xl"
             >
-              What I offer
-            </motion.h3>
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              I help businesses grow online by combining strategic thinking with
+              hands-on execution. From driving traffic to converting it, I cover
+              the full funnel, so nothing gets lost between strategy and results.
+            </motion.p>
+            <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
               {[
                 {
-                  title: "Paid Media",
+                  title: "Meta Ads / Paid Advertising",
+                  tagline: "Turn ad spend into real returns",
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-emerald-600">
+                      <path d="M3 3v18h18" />
+                      <path d="M18 9l-5 5-4-4-3 3" />
+                    </svg>
+                  ),
                   description:
-                    "PPC, social advertising, and display campaigns optimised for conversion.",
+                    "I build and manage Meta ad campaigns that are engineered to convert, not just get clicks. From audience research and creative strategy to ongoing optimisation, every decision is driven by data and real-world sales psychology.",
                 },
                 {
-                  title: "SEO & Content",
+                  title: "Funnel Building",
+                  tagline: "Guide your audience from stranger to paying customer",
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-emerald-600">
+                      <path d="M2 2h20l-4 8v10H6V10L2 2z" />
+                    </svg>
+                  ),
                   description:
-                    "Organic growth through search optimisation and strategic content.",
+                    "I design and build high-converting sales funnels that move people through each stage of the buying journey with purpose. No dead ends, no drop-off points, just a clear path to conversion.",
                 },
                 {
-                  title: "Growth Strategy",
+                  title: "Webflow Web Design",
+                  tagline: "Websites that work as hard as you do",
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-emerald-600">
+                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                      <line x1="8" y1="21" x2="16" y2="21" />
+                      <line x1="12" y1="17" x2="12" y2="21" />
+                    </svg>
+                  ),
                   description:
-                    "Data-driven planning to scale your marketing and reach.",
+                    "I build fast, professional websites in Webflow that are designed around your business goals, not just aesthetics. Clean, conversion-focused, and built to grow with you.",
+                },
+                {
+                  title: "CRM & Automation",
+                  tagline: "Stop letting leads fall through the cracks",
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-emerald-600">
+                      <circle cx="12" cy="12" r="3" />
+                      <path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42" />
+                    </svg>
+                  ),
+                  description:
+                    "I set up and optimise CRM pipelines and automation workflows that keep your leads warm, your follow-ups consistent, and your time protected. Built on Go High Level and tailored to how you actually work.",
+                },
+                {
+                  title: "Conversion Copywriting",
+                  tagline: "Words that make people act",
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-emerald-600">
+                      <path d="M12 20h9" />
+                      <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+                    </svg>
+                  ),
+                  description:
+                    "Every word on your website, ad, or landing page is either earning or losing you money. I write copy rooted in buyer psychology and sales experience. The kind that speaks directly to what your audience actually cares about.",
+                },
+                {
+                  title: "SEO",
+                  tagline: "Get found by the right people at the right time",
+                  icon: (
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6 text-emerald-600">
+                      <circle cx="11" cy="11" r="8" />
+                      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+                    </svg>
+                  ),
+                  description:
+                    "I implement SEO strategies that build sustainable, long-term visibility in search. From technical foundations and on-page optimisation to content that ranks and converts.",
                 },
               ].map((service, i) => (
                 <motion.div
@@ -178,52 +426,281 @@ export default function Home() {
                   initial={{ opacity: 0, y: 24 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.1 * i }}
-                  className="rounded-xl border border-zinc-200 bg-zinc-50/50 p-6 dark:border-zinc-800 dark:bg-zinc-900/50"
+                  transition={{ delay: 0.05 * Math.min(i, 4) }}
+                  className="rounded-xl border border-zinc-200 bg-white p-6 shadow-sm"
                 >
-                  <h4 className="font-semibold mb-2">{service.title}</h4>
-                  <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                    {service.description}
-                  </p>
+                  <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-50 text-emerald-600">
+                    {service.icon}
+                  </div>
+                  <h4 className="font-semibold text-zinc-900 mb-1">{service.title}</h4>
+                  <p className="text-sm font-medium text-emerald-700 mb-3">{service.tagline}</p>
+                  <p className="text-sm text-zinc-800">{service.description}</p>
                 </motion.div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Contact Section */}
-        <section id="contact" className="border-t border-zinc-200 dark:border-zinc-800">
-          <div className="mx-auto max-w-5xl px-6 py-24">
+        {/* Text Testimonial - Harry Kirk */}
+        <section id="testimonial-harry" className="bg-emerald-100/90 py-24">
+          <div className="mx-auto max-w-3xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center md:text-left"
+              className="rounded-2xl border border-zinc-200 bg-white p-8 shadow-lg sm:p-10"
             >
-              <h2 className="text-sm font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mb-4">
-                Contact
+              <div className="mb-6 flex justify-center gap-1" aria-hidden>
+                {[1, 2, 3, 4, 5].map((i) => (
+                  <span key={i} className="text-amber-400">★</span>
+                ))}
+              </div>
+              <blockquote className="mb-8 text-center text-lg font-bold leading-relaxed text-zinc-900 sm:text-xl">
+                &ldquo;Had an extremely helpful call with Gareth, who was extremely knowledgeable, clear and concise. Giving me a perfect structure upon how to put together my marketing for my business, giving me the structure I needed.&rdquo;
+              </blockquote>
+              <div className="flex flex-wrap items-center justify-center gap-6 sm:flex-nowrap sm:gap-8">
+                <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full">
+                  <Image
+                    src="/harry-kirk-profile.png"
+                    alt="Harry Kirk"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </div>
+                <div className="text-center sm:text-left">
+                  <p className="font-bold text-zinc-900">Harry Kirk</p>
+                  <p className="text-sm text-zinc-500">Head Coach / Founder of Harry Kirk Online Coach</p>
+                </div>
+                <p className="text-sm font-semibold text-zinc-600">Harry Kirk Online Coach</p>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Portfolio Section */}
+        <section id="portfolio" className="bg-zinc-50/30">
+          <div className="mx-auto max-w-6xl px-6 py-24">
+            <motion.h2
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-sm font-medium text-zinc-700 uppercase tracking-wider mb-4"
+            >
+              My work
+            </motion.h2>
+            <motion.h3
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.05 }}
+              className="text-2xl font-semibold text-zinc-900 mb-12"
+            >
+              Recent projects
+            </motion.h3>
+            <div className="grid gap-8 md:grid-cols-2">
+              {[
+                {
+                  client: "Rich and Niche Academy",
+                  title: "Meta Ad Creative Overhaul",
+                  description:
+                    "Rich and Niche Academy's paid social campaign was generating clicks, but the creative wasn't converting at the level the budget deserved. I redesigned the ad creatives from the ground up: new visuals, new copy, built around the audience rather than the brand. The results spoke for themselves: click-through rate jumped from 4.94% to 8.74%, ROAS more than doubled from 2.76x to 6.51x, and total clicks grew by 223% (from 1,257 to 4,063) while cost per click dropped from $0.04 to $0.03.",
+                  tagline: "Better creative. Same budget. Dramatically better returns.",
+                  tags: ["Meta Ads", "Ad Creative", "Conversion Copy", "Conversion Optimisation"],
+                  link: "#",
+                  image: "/rich-niche-case-study.png",
+                },
+                {
+                  client: "Aspire 1 Coaching",
+                  title: "Lead Generation System Build",
+                  description:
+                    "Aspire 1 Coaching had a great service but no digital system to capture or nurture leads. Everything came through word of mouth. I built their lead generation infrastructure from scratch: a conversion-focused landing page, a professionally designed ebook lead magnet, a CRM pipeline in GoHighLevel, and an automated email sequence to deliver the ebook and follow up with new subscribers. They went from zero digital lead capture to a fully functioning funnel that works while they sleep.",
+                  tagline: "From referral-only to a proper digital sales system.",
+                  tags: ["Landing Page", "Lead Magnet", "GoHighLevel", "Email Automation"],
+                  link: "#",
+                  image: "/aspire-1-case-study.png",
+                },
+              ].map((project, i) => (
+                <motion.article
+                  key={project.title}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 * i }}
+                  className="group overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition-shadow hover:shadow-lg"
+                >
+                  <div className="relative aspect-video overflow-hidden bg-zinc-100">
+                    {project.image ? (
+                      <Image
+                        src={project.image}
+                        alt={`${project.client} - ${project.title}`}
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                    ) : (
+                      <div className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-zinc-100 to-zinc-200">
+                        <span className="text-sm font-medium text-zinc-400">
+                          Project image
+                        </span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="p-6">
+                    <div className="mb-3 flex flex-wrap gap-2">
+                      {project.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <p className="mb-1 text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                      {project.client}
+                    </p>
+                    <h4 className="mb-3 text-lg font-semibold text-zinc-900">
+                      {project.title}
+                    </h4>
+                    <p className="mb-3 text-sm text-zinc-800 leading-relaxed">
+                      {project.description}
+                    </p>
+                    {project.tagline && (
+                      <p className="mb-4 text-sm font-medium italic text-emerald-700">
+                        {project.tagline}
+                      </p>
+                    )}
+                    <a
+                      href="#contact"
+                      className="inline-flex items-center gap-2 rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-emerald-200/50 transition-all hover:bg-emerald-700 hover:shadow-emerald-300/50"
+                    >
+                      Let&apos;s do something like this
+                      <span className="transition-transform group-hover:translate-x-0.5">→</span>
+                    </a>
+                  </div>
+                </motion.article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section id="testimonials" className="bg-emerald-100/90">
+          <div className="mx-auto max-w-6xl px-6 py-24">
+            <div className="grid gap-12 items-center lg:grid-cols-2 lg:gap-16">
+              {/* Left column - Text content */}
+              <div>
+                <h2 className="mb-8 border-b border-zinc-300 pb-2 text-sm font-medium text-zinc-500 uppercase tracking-wider">
+                  Customer stories
+                </h2>
+                <span className="text-5xl font-serif text-amber-600/80 leading-none" aria-hidden>&ldquo;</span>
+                <blockquote className="mt-2 text-2xl font-semibold text-zinc-900 leading-snug sm:text-3xl">
+                  Definitely give Gareth a try if you&apos;re looking for a full stack marketer.
+                </blockquote>
+                <div className="mt-4 flex gap-1" aria-hidden>
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <span key={i} className="text-amber-500">★</span>
+                  ))}
+                </div>
+                <div className="mt-6 flex items-center gap-4">
+                  <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full">
+                    <Image
+                      src="/rich-ux-profile.png"
+                      alt="Rich UX"
+                      fill
+                      className="object-cover"
+                      unoptimized
+                    />
+                  </div>
+                  <div>
+                    <p className="font-medium text-zinc-900">Rich UX</p>
+                    <p className="text-sm text-zinc-500">Rich and Niche Academy</p>
+                  </div>
+                </div>
+                <div className="mt-8 grid grid-cols-3 gap-4 rounded-xl border border-emerald-700/30 bg-emerald-800/90 p-6 shadow-sm">
+                  <div className="text-center">
+                    <p className="text-xl font-bold text-amber-400">77%</p>
+                    <p className="text-sm text-amber-200/90">CTR improvement</p>
+                  </div>
+                  <div className="border-x border-amber-400/60 text-center">
+                    <p className="text-xl font-bold text-amber-400">2.4x</p>
+                    <p className="text-sm text-amber-200/90">ROAS growth</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-xl font-bold text-amber-400">223%</p>
+                    <p className="text-sm text-amber-200/90">More clicks</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right column - Video */}
+              <div className="flex flex-col items-center">
+                <div className="w-full max-w-sm overflow-hidden rounded-2xl border border-zinc-200 bg-black shadow-lg">
+                  <div className="relative aspect-9/16">
+                    <iframe
+                      src="https://www.youtube.com/embed/TrQqcXaLJEE?rel=0"
+                      title="Video testimonial from Rich UX, Rich and Niche Academy"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                      allowFullScreen
+                      className="absolute inset-0 h-full w-full"
+                    />
+                  </div>
+                </div>
+                <p className="mt-4 w-full max-w-sm text-center text-sm text-zinc-500">
+                  Watch Rich share his experience working with me
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <section id="contact" className="bg-emerald-100/90 py-24">
+          <div className="mx-auto max-w-4xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="overflow-hidden rounded-3xl border border-emerald-200/80 bg-white p-10 text-center shadow-xl sm:p-14"
+            >
+              <h2 className="text-sm font-medium text-emerald-700 uppercase tracking-wider mb-3">
+                Ready to grow?
               </h2>
-              <h3 className="text-2xl font-semibold mb-4">
-                Let&apos;s work together
+              <h3 className="text-2xl font-bold text-zinc-900 sm:text-3xl mb-4">
+                Book a free 30-minute strategy call
               </h3>
-              <p className="max-w-xl text-zinc-600 dark:text-zinc-400 mb-8">
-                Interested in growing your brand? Get in touch to discuss how we
-                can achieve your marketing goals.
+              <p className="mx-auto max-w-2xl text-zinc-600 mb-8 text-lg leading-relaxed">
+                No pitch, no pressure. We&apos;ll look at your current setup,
+                identify the biggest opportunity, and map out a clear path
+                forward. If it&apos;s a fit, we&apos;ll talk next steps.
               </p>
-              <a
-                href="mailto:hello@garethwray.com"
-                className="inline-flex items-center rounded-full bg-zinc-900 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
-              >
-                hello@garethwray.com
-              </a>
+              <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
+                <a
+                  href="mailto:hello@garethrswray.com?subject=Strategy%20Call%20Request"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-emerald-200/50 transition-all hover:bg-emerald-700 hover:shadow-emerald-300/50 hover:-translate-y-0.5 sm:w-auto"
+                >
+                  Get in touch
+                  <span>→</span>
+                </a>
+                <a
+                  href="mailto:hello@garethrswray.com?subject=Strategy%20Call%20Request"
+                  className="text-sm font-medium text-emerald-700 hover:text-emerald-800 transition-colors"
+                >
+                  hello@garethrswray.com
+                </a>
+              </div>
+              <p className="mt-6 text-sm text-zinc-500">
+                Based in Ipswich, UK • Typically responds within 24 hours
+              </p>
             </motion.div>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="border-t border-zinc-200 dark:border-zinc-800">
+        <footer>
           <div className="mx-auto max-w-5xl px-6 py-8">
-            <p className="text-sm text-zinc-500 dark:text-zinc-400">
+            <p className="text-sm text-zinc-700">
               © {new Date().getFullYear()} Gareth Wray. Ipswich, UK.
             </p>
           </div>
