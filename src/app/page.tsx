@@ -173,7 +173,7 @@ export default function Home() {
         </section>
 
         {/* About Section */}
-        <section id="about" className="bg-zinc-50/30">
+        <section id="about">
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
@@ -279,16 +279,16 @@ export default function Home() {
                   </div>
                   {/* Floating text boxes - hidden on small screens to avoid overflow */}
                   <div className="absolute left-0 top-1/2 z-20 hidden w-48 -translate-x-[55%] -translate-y-1/2 rounded-lg border border-emerald-700/30 bg-emerald-800/95 px-4 py-3 shadow-lg md:block md:w-52">
-                    <p className="font-bold text-amber-400">Growth Focused</p>
-                    <p className="mt-0.5 text-xs text-amber-200/90">Every asset designed to bring in leads</p>
+                    <p className="font-bold text-white">Growth Focused</p>
+                    <p className="mt-0.5 text-xs text-white/90">Every asset designed to bring in leads</p>
                   </div>
                   <div className="absolute right-0 top-1/2 z-20 hidden w-48 translate-x-1/2 -translate-y-1/2 rounded-lg border border-emerald-700/30 bg-emerald-800/95 px-4 py-3 shadow-lg md:block md:w-52">
-                    <p className="font-bold text-amber-400">Sales DNA</p>
-                    <p className="mt-0.5 text-xs text-amber-200/90">Marketing built around what actually converts</p>
+                    <p className="font-bold text-white">Sales DNA</p>
+                    <p className="mt-0.5 text-xs text-white/90">Marketing built around what actually converts</p>
                   </div>
                   <div className="absolute bottom-0 left-1/2 z-20 hidden w-48 -translate-x-1/2 translate-y-1/2 rounded-lg border border-emerald-700/30 bg-emerald-800/95 px-4 py-3 shadow-lg md:block md:w-56">
-                    <p className="font-bold text-amber-400">Purpose Built</p>
-                    <p className="mt-0.5 text-xs text-amber-200/90">Every asset created with a goal in mind</p>
+                    <p className="font-bold text-white">Purpose Built</p>
+                    <p className="mt-0.5 text-xs text-white/90">Every asset created with a goal in mind</p>
                   </div>
                 </div>
               </div>
@@ -497,7 +497,7 @@ export default function Home() {
         </section>
 
         {/* Portfolio Section */}
-        <section id="portfolio" className="bg-zinc-50/30">
+        <section id="portfolio">
           <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 md:py-24">
             <motion.h2
               initial={{ opacity: 0, y: 24 }}
@@ -612,7 +612,7 @@ export default function Home() {
                 <h2 className="mb-8 border-b border-zinc-300 pb-2 text-sm font-medium text-zinc-500 uppercase tracking-wider">
                   Customer stories
                 </h2>
-                <span className="text-5xl font-serif text-amber-600/80 leading-none" aria-hidden>&ldquo;</span>
+                <span className="text-5xl font-serif text-emerald-600 leading-none" aria-hidden>&ldquo;</span>
                 <blockquote className="mt-2 text-xl font-semibold text-zinc-900 leading-snug sm:text-2xl md:text-3xl">
                   Definitely give Gareth a try if you&apos;re looking for a full stack marketer.
                 </blockquote>
@@ -638,16 +638,16 @@ export default function Home() {
                 </div>
                 <div className="mt-8 grid grid-cols-1 gap-4 rounded-xl border border-emerald-700/30 bg-emerald-800/90 p-4 shadow-sm sm:grid-cols-3 sm:gap-4 sm:p-6">
                   <div className="py-4 text-center sm:py-0">
-                    <p className="text-xl font-bold text-amber-400">77%</p>
-                    <p className="text-sm text-amber-200/90">CTR improvement</p>
+                    <p className="text-xl font-bold text-white">77%</p>
+                    <p className="text-sm text-white/90">CTR improvement</p>
                   </div>
-                  <div className="border-x-0 border-t border-b border-amber-400/60 py-4 text-center sm:border-x sm:border-t-0 sm:border-b-0 sm:py-0">
-                    <p className="text-xl font-bold text-amber-400">2.4x</p>
-                    <p className="text-sm text-amber-200/90">ROAS growth</p>
+                  <div className="border-x-0 border-t border-b border-white/40 py-4 text-center sm:border-x sm:border-t-0 sm:border-b-0 sm:py-0">
+                    <p className="text-xl font-bold text-white">2.4x</p>
+                    <p className="text-sm text-white/90">ROAS growth</p>
                   </div>
                   <div className="py-4 text-center sm:py-0">
-                    <p className="text-xl font-bold text-amber-400">223%</p>
-                    <p className="text-sm text-amber-200/90">More clicks</p>
+                    <p className="text-xl font-bold text-white">223%</p>
+                    <p className="text-sm text-white/90">More clicks</p>
                   </div>
                 </div>
               </div>
@@ -674,7 +674,7 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="bg-emerald-100/90 py-16 md:py-24">
+        <section id="contact" className="py-16 md:py-24">
           <div className="mx-auto max-w-4xl px-4 sm:px-6">
             <motion.div
               initial={{ opacity: 0, y: 24 }}
