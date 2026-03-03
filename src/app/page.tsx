@@ -695,7 +695,9 @@ export default function Home() {
               </p>
               <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center sm:gap-6">
                 <a
-                  href="mailto:hello@garethrswray.com?subject=Strategy%20Call%20Request"
+                  href="https://cal.com/gareth-wray/virtual-coffee"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-600 px-8 py-4 text-base font-semibold text-white shadow-lg shadow-emerald-200/50 transition-all hover:bg-emerald-700 hover:shadow-emerald-300/50 hover:-translate-y-0.5 sm:w-auto"
                 >
                   Get in touch
