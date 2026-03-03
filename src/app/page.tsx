@@ -53,7 +53,7 @@ export default function Home() {
             <a href="#portfolio" className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800">
               Work
             </a>
-            <a href="https://calendar.app.google/7prbWSkjAnK2aaq8A" target="_blank" rel="noopener noreferrer" className="ml-2 rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-emerald-700 hover:shadow-md hover:shadow-emerald-200/50 sm:ml-4">
+            <a href="https://cal.com/gareth-wray/virtual-coffee" target="_blank" rel="noopener noreferrer" className="ml-2 rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-emerald-700 hover:shadow-md hover:shadow-emerald-200/50 sm:ml-4">
               Book a call
             </a>
           </div>
@@ -86,7 +86,7 @@ export default function Home() {
                 <a href="#about" className="rounded-lg px-4 py-3 text-base font-medium text-zinc-700 hover:bg-emerald-50 hover:text-emerald-800" onClick={() => setNavOpen(false)}>About</a>
                 <a href="#services" className="rounded-lg px-4 py-3 text-base font-medium text-zinc-700 hover:bg-emerald-50 hover:text-emerald-800" onClick={() => setNavOpen(false)}>Services</a>
                 <a href="#portfolio" className="rounded-lg px-4 py-3 text-base font-medium text-zinc-700 hover:bg-emerald-50 hover:text-emerald-800" onClick={() => setNavOpen(false)}>Work</a>
-                <a href="https://calendar.app.google/7prbWSkjAnK2aaq8A" target="_blank" rel="noopener noreferrer" className="mt-2 rounded-full bg-emerald-600 px-4 py-3 text-center text-base font-semibold text-white hover:bg-emerald-700" onClick={() => setNavOpen(false)}>Book a call</a>
+                <a href="https://cal.com/gareth-wray/virtual-coffee" target="_blank" rel="noopener noreferrer" className="mt-2 rounded-full bg-emerald-600 px-4 py-3 text-center text-base font-semibold text-white hover:bg-emerald-700" onClick={() => setNavOpen(false)}>Book a call</a>
               </div>
             </motion.div>
           )}
