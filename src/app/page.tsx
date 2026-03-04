@@ -38,7 +38,7 @@ export default function Home() {
         className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-200/80 bg-white/95 shadow-sm shadow-zinc-200/50 backdrop-blur-md"
       >
         <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
-          <a href="#" className="group flex items-center gap-2 text-base font-semibold text-zinc-900 transition-colors hover:text-emerald-700 sm:text-lg" onClick={() => setNavOpen(false)}>
+          <a href="/" className="group flex items-center gap-2 text-base font-semibold text-zinc-900 transition-colors hover:text-emerald-700 sm:text-lg" onClick={() => setNavOpen(false)}>
             <span className="h-2 w-2 rounded-full bg-emerald-500 transition-colors group-hover:bg-emerald-600" />
             Gareth Wray
           </a>
