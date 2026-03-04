@@ -21,6 +21,18 @@ export default function Home() {
   const [aboutExpanded, setAboutExpanded] = useState(false);
   const [navOpen, setNavOpen] = useState(false);
 
+  const scrollToSection = (id: string) => {
+    if (typeof document === "undefined") return;
+    const section = document.getElementById(id);
+    if (!section) return;
+
+    const headerOffset = 80;
+    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+    const offsetTop = sectionTop - headerOffset;
+
+    window.scrollTo({ top: offsetTop, behavior: "smooth" });
+  };
+
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-white text-zinc-900">
       {/* Full-page background */}
@@ -38,19 +50,51 @@ export default function Home() {
         className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-200/80 bg-white/95 shadow-sm shadow-zinc-200/50 backdrop-blur-md"
       >
         <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 sm:px-6">
-          <a href="/" className="group flex items-center gap-2 text-base font-semibold text-zinc-900 transition-colors hover:text-emerald-700 sm:text-lg" onClick={() => setNavOpen(false)}>
+          <a
+            href=""
+            className="group flex items-center gap-2 text-base font-semibold text-zinc-900 transition-colors hover:text-emerald-700 sm:text-lg"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+              setNavOpen(false);
+            }}
+          >
             <span className="h-2 w-2 rounded-full bg-emerald-500 transition-colors group-hover:bg-emerald-600" />
             Gareth Wray
           </a>
           {/* Desktop nav */}
           <div className="hidden items-center gap-1 md:flex md:gap-2">
-            <a href="#about" className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800">
+            <a
+              href=""
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("about");
+                setNavOpen(false);
+              }}
+              className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800"
+            >
               About
             </a>
-            <a href="#services" className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800">
+            <a
+              href=""
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("services");
+                setNavOpen(false);
+              }}
+              className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800"
+            >
               Services
             </a>
-            <a href="#portfolio" className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800">
+            <a
+              href=""
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("portfolio");
+                setNavOpen(false);
+              }}
+              className="rounded-lg px-3 py-2 text-sm font-medium text-zinc-600 transition-colors hover:bg-emerald-50 hover:text-emerald-800"
+            >
               Work
             </a>
             <a href="https://cal.com/gareth-wray/virtual-coffee" target="_blank" rel="noopener noreferrer" className="ml-2 rounded-full bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:bg-emerald-700 hover:shadow-md hover:shadow-emerald-200/50 sm:ml-4">
@@ -83,10 +127,48 @@ export default function Home() {
               className="overflow-hidden border-t border-zinc-200/80 bg-white/98 backdrop-blur-md md:hidden"
             >
               <div className="flex flex-col px-4 py-4">
-                <a href="#about" className="rounded-lg px-4 py-3 text-base font-medium text-zinc-700 hover:bg-emerald-50 hover:text-emerald-800" onClick={() => setNavOpen(false)}>About</a>
-                <a href="#services" className="rounded-lg px-4 py-3 text-base font-medium text-zinc-700 hover:bg-emerald-50 hover:text-emerald-800" onClick={() => setNavOpen(false)}>Services</a>
-                <a href="#portfolio" className="rounded-lg px-4 py-3 text-base font-medium text-zinc-700 hover:bg-emerald-50 hover:text-emerald-800" onClick={() => setNavOpen(false)}>Work</a>
-                <a href="https://cal.com/gareth-wray/virtual-coffee" target="_blank" rel="noopener noreferrer" className="mt-2 rounded-full bg-emerald-600 px-4 py-3 text-center text-base font-semibold text-white hover:bg-emerald-700" onClick={() => setNavOpen(false)}>Book a call</a>
+                <a
+                  href=""
+                  className="rounded-lg px-4 py-3 text-base font-medium text-zinc-700 hover:bg-emerald-50 hover:text-emerald-800"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("about");
+                    setNavOpen(false);
+                  }}
+                >
+                  About
+                </a>
+                <a
+                  href=""
+                  className="rounded-lg px-4 py-3 text-base font-medium text-zinc-700 hover:bg-emerald-50 hover:text-emerald-800"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("services");
+                    setNavOpen(false);
+                  }}
+                >
+                  Services
+                </a>
+                <a
+                  href=""
+                  className="rounded-lg px-4 py-3 text-base font-medium text-zinc-700 hover:bg-emerald-50 hover:text-emerald-800"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("portfolio");
+                    setNavOpen(false);
+                  }}
+                >
+                  Work
+                </a>
+                <a
+                  href="https://cal.com/gareth-wray/virtual-coffee"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 rounded-full bg-emerald-600 px-4 py-3 text-center text-base font-semibold text-white hover:bg-emerald-700"
+                  onClick={() => setNavOpen(false)}
+                >
+                  Book a call
+                </a>
               </div>
             </motion.div>
           )}
